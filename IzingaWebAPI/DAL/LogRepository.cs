@@ -17,10 +17,7 @@ namespace IzingaWebAPI.DAL
         public string GetDataFromLogFile()
         {
             UpdateList();
-
-            //JSON_IO<Event>.Write(Events, HttpRuntime.AppDomainAppPath + @"\bin\Data\logfile.json");
             string json = JsonConvert.SerializeObject(Events);
-
             return json;
         }
 

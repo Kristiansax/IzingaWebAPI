@@ -15,7 +15,7 @@ namespace IzingaWebAPI.Controllers
 
         [HttpGet]
         [ActionName("GetLog")]
-        public List<Event> GetAllFromLog()
+        public string GetAllFromLog()
         {
             return logRep.GetDataFromLogFile();
         }

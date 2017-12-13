@@ -13,11 +13,15 @@ namespace IzingaWebAPI.DAL
     {
         public List<Event> Events = new List<Event>();
 
-        public List<Event> GetDataFromLogFile()
+        //Updates the list of data and returns it as a Json string
+        public string GetDataFromLogFile()
         {
             UpdateList();
 
-            return Events;
+            JSON_IO<Event>.Write(Events, HttpRuntime.AppDomainAppPath + @"\bin\Data\logfile.json");
+            string json = JsonConvert.SerializeObject(Events);
+
+            return json;
         }
 
         //Grabs .txt file from path (change to database call) and seperates each line by tabs using SeperateString()
@@ -25,9 +29,9 @@ namespace IzingaWebAPI.DAL
         private void UpdateList()
         {
             //Live
-            //string[] data = File.ReadAllLines(HttpRuntime.AppDomainAppPath + @"\bin\Data\log.txt");
+            string[] data = File.ReadAllLines(HttpRuntime.AppDomainAppPath + @"\bin\Data\log.txt");
             //Testing
-            string[] data = File.ReadAllLines(Environment.CurrentDirectory + @"\Data\log.txt");
+            //string[] data = File.ReadAllLines(Environment.CurrentDirectory + @"\Data\log.txt");
 
             bool firstLine = true;
             foreach (string item in data)
@@ -46,19 +50,18 @@ namespace IzingaWebAPI.DAL
                     Sensor sensor = new Sensor(seperatedItem[5], seperatedItem[6]);
                     Incident incident = new Incident(seperatedItem[4],
                                                      DateTime.ParseExact(
-                                                        "dd-MM-yyyy HH:mm:ss",
                                                         seperatedItem[0],
+                                                        "dd-MM-yyyy HH:mm:ss",
                                                         CultureInfo.InvariantCulture),
                                                      DateTime.ParseExact(
-                                                        "dd-MM-yyyy HH:mm:ss",
                                                         seperatedItem[7],
+                                                        "dd-MM-yyyy HH:mm:ss",
                                                         CultureInfo.InvariantCulture));
 
                     Event _event = new Event(incident, institution, patient, personnel, sensor);
                     Events.Add(_event);
                 }
             }
-            JSON_IO<Event>.Write(Events, Environment.CurrentDirectory + @"\Data\logfile.json");
 
         }
 

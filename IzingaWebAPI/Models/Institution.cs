@@ -7,8 +7,8 @@ namespace IzingaWebAPI.Models
 {
     public class Institution
     {
-        public string Department;
-        public string Residence;
+        public string Department { get; set; }
+        public string Residence { get; set; }
 
         public Institution(string department, string residence)
         {

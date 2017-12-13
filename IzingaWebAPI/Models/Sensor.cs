@@ -7,8 +7,8 @@ namespace IzingaWebAPI.Models
 {
     public class Sensor
     {
-        public string Type;
-        public string ID;
+        public string Type { get; set; }
+        public string ID { get; set; }
 
         public Sensor(string type, string id)
         {

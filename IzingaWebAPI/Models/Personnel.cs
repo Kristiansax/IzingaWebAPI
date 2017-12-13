@@ -7,8 +7,8 @@ namespace IzingaWebAPI.Models
 {
     public class Personnel
     {
-        public string Name;
-        public string ID;
+        public string Name { get; set; }
+        public string ID { get; set; }
 
         public Personnel(string name, string id)
         {

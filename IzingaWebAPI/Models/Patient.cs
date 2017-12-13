@@ -7,9 +7,9 @@ namespace IzingaWebAPI.Models
 {
     public class Patient
     {
-        public string Name;
-        public string Location;
-        public string ID;
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public string ID { get; set; }
 
         public Patient(string name, string location, string id)
         {

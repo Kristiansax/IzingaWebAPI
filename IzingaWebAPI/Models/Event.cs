@@ -8,11 +8,11 @@ namespace IzingaWebAPI.Models
 {
     public class Event
     {
-        public Incident Incident;
-        public Institution Institution;
-        public Patient Patient;
-        public Personnel Personnel;
-        public Sensor Sensor;
+        public Incident Incident { get; set; }
+        public Institution Institution { get; set; }
+        public Patient Patient { get; set; }
+        public Personnel Personnel { get; set; }
+        public Sensor Sensor { get; set; }
 
         public Event(Incident incident, Institution institution, Patient patient, Personnel personnel, Sensor sensor)
         {
